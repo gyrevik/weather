@@ -9,13 +9,13 @@ class ResponsiveTable extends React.Component {
   }
 
   componentDidMount() {
-    /*axios.get('api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml')
+    axios.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=814e19f3074443de6b0f91f176dc1026')
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
-      });*/
+      });
   }
 
   render () {  
