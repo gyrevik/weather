@@ -5,11 +5,13 @@ class ResponsiveTable extends React.Component {
   constructor() {
     super()
 
-    this.state = {key: '814e19f3074443de6b0f91f176dc1026'}
+    this.state = {apiID: '814e19f3074443de6b0f91f176dc1026'}
   }
 
   componentDidMount() {
-    axios.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=814e19f3074443de6b0f91f176dc1026')
+    const { apiID } = this.state;
+
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${apiID}`)
       .then(function (response) {
         console.log(response);
       })
