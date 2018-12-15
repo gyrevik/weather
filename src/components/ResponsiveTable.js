@@ -4,14 +4,21 @@ import axios from 'axios'
 class ResponsiveTable extends React.Component {
   constructor() {
     super()
-
-    this.state = {apiID: '814e19f3074443de6b0f91f176dc1026'}
+    
+    //api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+    this.state = {apiID: '814e19f3074443de6b0f91f176dc1026',
+                  apiBase: 'http://api.openweathermap.org/data/2.5/forecast',
+                  city: 'München',
+                  country: 'DE'
+    }
   }
 
   componentDidMount() {
-    const { apiID } = this.state;
+    const { apiID, apiBase, city, country } = this.state;
+    const url = `${apiBase}?q=${city},${country}&appid=${apiID}`;
+    console.log('url: ', url)
 
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=${apiID}`)
+    axios.get(url)
       .then(function (response) {
         console.log(response);
       })
