@@ -10,7 +10,8 @@ class ResponsiveTable extends React.Component {
                   apiBase: 'http://api.openweathermap.org/data/2.5/forecast',
                   city: 'München',
                   country: 'DE',
-                  type: 'like'
+                  type: 'like',
+                  list: []
     }
   }
 
@@ -20,17 +21,24 @@ class ResponsiveTable extends React.Component {
     console.log('url: ', url)
 
     axios.get(url)
-      .then(function (response) {
-        console.log('response: ', response);
-        console.log('response.data.list: ', response.data.list)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(res => {
+      console.log('res: ', res);
+      console.log('res.data.list: ', res.data.list)
+      this.setState({list: res.data.list})
+      //const posts = res.data.data.children.map(obj => obj.data);
+      //this.setState({ posts });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
+
   render () {
+    const { list } = this.state;
     const indexes = [4, 12, 20, 28, 36]
+    console.log('list in render: ', list)
+
     return (
       <table>
         <caption>Edgewater, NJ 5 Day Weather</caption>
@@ -45,6 +53,16 @@ class ResponsiveTable extends React.Component {
           </tr>
         </thead>
         <tbody>
+          {list.map((row, key) => 
+            <tr key={key}>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+            </tr>
+          )}
           <tr>
             <td data-label="Account">Visa - 3412</td>
             <td data-label="Due Date">04/01/2016</td>
