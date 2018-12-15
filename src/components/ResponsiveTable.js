@@ -1,10 +1,21 @@
 import React from 'react'
+import axios from 'axios'
 
 class ResponsiveTable extends React.Component {
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {key: '814e19f3074443de6b0f91f176dc1026'}
+  }
+
+  componentDidMount() {
+    /*axios.get('api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });*/
   }
 
   render () {  
