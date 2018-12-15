@@ -37,6 +37,8 @@ class ResponsiveTable extends React.Component {
   render () {
     const { list } = this.state;
     const indexes = [4, 12, 20, 28, 36]
+    const beginSlice = [0, 8, 16, 24, 32]
+    const endSlice = [8, 16, 24, 32, 40]
     console.log('list in render: ', list)
 
     return (
@@ -57,7 +59,7 @@ class ResponsiveTable extends React.Component {
             <tr key={key}>
               <td data-label="DAY">test</td>
               <td data-label="DESCRIPTION">test</td>
-              <td data-label="HIGH / LOW">{indexes[key]}</td>
+              <td data-label="HIGH / LOW">{list[indexes[key]] && list[indexes[key]].main.temp_min + ' / ' + list[indexes[key]].main.temp_max}</td>
               <td data-label="PRESSURE">{list[indexes[key]] && list[indexes[key]].main.pressure}</td>
               <td data-label="WIND">test</td>
               <td data-label="HUMIDITY">test</td>
