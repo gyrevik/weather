@@ -47,7 +47,7 @@ class ResponsiveTable extends React.Component {
             <th scope="col">DAY</th>
             <th scope="col">DESCRIPTION</th>
             <th scope="col">HIGH / LOW</th>
-            <th scope="col">PRECIP</th>
+            <th scope="col">PRESSURE</th>
             <th scope="col">WIND</th>
             <th scope="col">HUMIDITY</th>
           </tr>
@@ -58,7 +58,7 @@ class ResponsiveTable extends React.Component {
               <td data-label="DAY">test</td>
               <td data-label="DESCRIPTION">test</td>
               <td data-label="HIGH / LOW">{indexes[key]}</td>
-              <td data-label="PRECIP">{list[0] && list[0].dt}</td>
+              <td data-label="PRESSURE">{list[indexes[key]] && list[indexes[key]].main.pressure}</td>
               <td data-label="WIND">test</td>
               <td data-label="HUMIDITY">test</td>
             </tr>
