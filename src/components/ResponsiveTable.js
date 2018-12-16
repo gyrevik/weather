@@ -95,7 +95,7 @@ class ResponsiveTable extends React.Component {
               <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
               <td data-label="WIND">{list[indexes[index]] && list[indexes[index]].wind.deg + ' ' + list[indexes[index]].wind.speed}</td>
-              <td data-label="HUMIDITY"></td>
+              <td data-label="HUMIDITY">{list[indexes[index]] && list[indexes[index]].main.humidity}</td>
             </tr>
           )}
         </tbody>
