@@ -91,7 +91,7 @@ class ResponsiveTable extends React.Component {
           {list && indexes.map((val, index) => 
             <tr key={index}>
               <td data-label="DAY">{list[indexes[index]] && list[indexes[index]].dt_txt}</td>
-              <td data-label="DESCRIPTION"></td>
+              <td data-label="DESCRIPTION">{list[indexes[index]] && list[indexes[index]].weather[0].description}</td>
               <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
               <td data-label="WIND"></td>
