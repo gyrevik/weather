@@ -19,15 +19,15 @@ class ResponsiveTable extends React.Component {
   }
 
   componentDidMount() {
-    const { apiID, apiBase, city, country, type, units } = this.state
-    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`
-    console.log('componentDidMount');
-    console.log('url: ', url)
-
-    this.search(url);
+    this.search();
   }
 
-  search = (url) => 
+  search = () => {
+    const { apiID, apiBase, city, country, type, units } = this.state
+    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`
+    console.log('componentDidMount')
+    console.log('url: ', url)
+
     axios.get(url)
       .then(res => {
         this.setState({list: res.data.list})
@@ -35,6 +35,7 @@ class ResponsiveTable extends React.Component {
       .catch(function (error) {
         console.log(error)
       });
+  }
 
   inputChange = (event) => {
     console.log('entered: ', event.target.value)
