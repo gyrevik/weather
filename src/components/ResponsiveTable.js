@@ -90,12 +90,12 @@ class ResponsiveTable extends React.Component {
         <tbody>
           {list && indexes.map((row, index) => 
             <tr key={index}>
-              <td data-label="DAY">test</td>
-              <td data-label="DESCRIPTION">test</td>
-              <td data-label="HIGH / LOW">{this.min(this.slice(list, index))} / {this.max(this.slice(list, index))}</td>
+              <td data-label="DAY"></td>
+              <td data-label="DESCRIPTION"></td>
+              <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
               <td data-label="WIND"></td>
-              <td data-label="HUMIDITY">test</td>
+              <td data-label="HUMIDITY"></td>
             </tr>
           )}
         </tbody>
