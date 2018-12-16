@@ -31,12 +31,16 @@ class ResponsiveTable extends React.Component {
     });
   }
 
-  search = () => {
+  inputChange = (event) => {
+    console.log('entered: ', event.target.value)
+    this.setState({location: event.target.value});
+  }
+  
+  searchBtn = () => {
     console.log('find something or someone')
   }
 
   slice(list, index) {
-    console.log('list.length: ', list.length)
     if (list.length === 0) return
 
     const beginSlice  = [0,  8, 16, 24, 32]
@@ -78,8 +82,8 @@ class ResponsiveTable extends React.Component {
     return (
       <table>
         <caption>
-          <input type='text' id='location' defaultValue={`${city}, ${country}`} />&nbsp;
-          <input type='button' value='UPDATE' onClick={this.search} />
+          <input type='text' id='location' onChange={this.inputChange} defaultValue={`${city}, ${country}`} />&nbsp;
+          <input type='submit' value='UPDATE' onClick={this.searchBtn} />
         </caption>
         <caption>{location} 5 Day Forecast</caption>
         <thead>
