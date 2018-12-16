@@ -21,23 +21,35 @@ class ResponsiveTable extends React.Component {
   componentDidMount() {
     const { apiID, apiBase, city, country, type, units } = this.state
     const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`
+    console.log('componentDidMount');
+    console.log('url: ', url)
 
     axios.get(url)
     .then(res => {
       this.setState({list: res.data.list})
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     });
   }
 
   inputChange = (event) => {
     console.log('entered: ', event.target.value)
-    this.setState({location: event.target.value});
+    this.setState({location: event.target.value})
   }
   
   searchBtn = () => {
-    console.log('find something or someone')
+    const { location } = this.state
+    console.log('search location: ', location)
+    if (location.lenth === 0) return
+
+    const arr = location.split(',')
+    if (arr.length === 1)
+      this.setState({country: ''})
+
+    this.setState({city: arr[0]})
+    if (arr.length > 1)
+      this.setState({country: arr[1]})
   }
 
   slice(list, index) {
@@ -77,7 +89,8 @@ class ResponsiveTable extends React.Component {
     const { list, city, country, windUnit } = this.state;
     const indexes = [4, 12, 20, 28, 36]
     const location = `${city}, ${country}`
-    console.log('list in render: ', list)
+    //console.log('list in render: ', list)
+    console.log('render')
 
     return (
       <table>
