@@ -31,6 +31,10 @@ class ResponsiveTable extends React.Component {
     });
   }
 
+  search = () => {
+
+  }
+
   slice(list, index) {
     console.log('list.length: ', list.length)
     if (list.length === 0) return
@@ -73,7 +77,10 @@ class ResponsiveTable extends React.Component {
 
     return (
       <table>
-        <caption><input type='text' /> <input type='button' value='UPDATE' /></caption>
+        <caption>
+          <input type='text' id='location' />&nbsp;
+          <input type='button' value='UPDATE' onClick={this.search} />
+        </caption>
         <caption>{location} 5 Day Forecast</caption>
         <thead>
           <tr>
