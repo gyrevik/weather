@@ -28,19 +28,21 @@ class ResponsiveTable extends React.Component {
     }
     
     let url = `${apiBase}?q=${cityParam}`
-    if (countryParam.length > 0) url += `,${countryParam}`
-
+    if (countryParam.length > 0) 
+      url += `,${countryParam}`
     url += `&type=${type}&appid=${apiID}&units=${units}`
-    //const url = `${apiBase}?q=${cityParam}&type=${type}&appid=${apiID}&units=${units}`
+  
     console.log('search')
     console.log('url: ', url)
 
+    this.setState({list: []})
     axios.get(url)
       .then(res => {
         this.setState({list: res.data.list})
       })
       .catch(function (error) {
-        console.log(error)
+        console.log('error: ', error)
+        error = true;
       });
   }
 
