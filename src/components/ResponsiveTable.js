@@ -61,7 +61,7 @@ class ResponsiveTable extends React.Component {
   }
 
   highLow(list, index) {
-    return `${this.min(this.slice(list, index))}/${this.max(this.slice(list, index))}`
+    return this.min(this.slice(list, index)) + ' / ' + this.max(this.slice(list, index))
   }
 
   getDate(dt, dt_txt) {
