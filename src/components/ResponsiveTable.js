@@ -105,13 +105,16 @@ class ResponsiveTable extends React.Component {
   render () {
     const { list, city, country, windUnit } = this.state;
     const indexes = [4, 12, 20, 28, 36]
-    let location = city
+    let location = city, noResults = ''
     
     if (country.length > 0)
       location += ', ' + country
     console.log('location: ', location)
     console.log('list in render: ', list)
     console.log('render')
+
+    if (list.length === 0)
+      noResults = 'no results for ' + location
 
     return (
       <table>
@@ -141,6 +144,7 @@ class ResponsiveTable extends React.Component {
               <td data-label="HUMIDITY">{list[indexes[index]] && list[indexes[index]].main.humidity}%</td>
             </tr>
           )}
+          <tr><td colSpan='6'>{noResults}</td></tr>
         </tbody>
       </table>
     )
