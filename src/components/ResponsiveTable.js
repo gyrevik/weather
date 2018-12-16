@@ -65,11 +65,13 @@ class ResponsiveTable extends React.Component {
   }
 
   getDate(dt, dt_txt) {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     console.log('dt: ', dt)
     console.log('dt_txt', dt_txt)
-    const d = new Date(dt)
+    const d = new Date(dt_txt)
     console.log('getDate: ', d.getDate())  
     console.log('getDay: ', d.getDay())
+    console.log('day: ', days[d.getDay()])
   }
 
   render () {
