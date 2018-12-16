@@ -3,21 +3,16 @@ import axios from 'axios'
 import { getCardinal } from '../util/util'
 
 class ResponsiveTable extends React.Component {
-  constructor() {
-    super()
-    
-    //api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
-    this.state = {apiID: '814e19f3074443de6b0f91f176dc1026',
-                  apiBase: 'http://api.openweathermap.org/data/2.5/forecast',
-                  city: 'New York',
-                  country: 'US',
-                  type: 'like',
-                  units: 'imperial',
-                  windUnit: 'mph',
-                  list: []
-    }
+  state = {apiID: '814e19f3074443de6b0f91f176dc1026',
+                apiBase: 'http://api.openweathermap.org/data/2.5/forecast',
+                city: 'New York',
+                country: 'US',
+                type: 'like',
+                units: 'imperial',
+                windUnit: 'mph',
+                list: []
   }
-
+  
   componentDidMount() {
     console.log('componentDidMount')
     let city = '', country = ''
@@ -31,7 +26,9 @@ class ResponsiveTable extends React.Component {
       cityParam = city
       countryParam = country
     }
-    const url = `${apiBase}?q=${cityParam},${countryParam}&type=${type}&appid=${apiID}&units=${units}`
+    
+    //const url = `${apiBase}?q=${cityParam},${countryParam}&type=${type}&appid=${apiID}&units=${units}`
+    const url = `${apiBase}?q=${cityParam}&type=${type}&appid=${apiID}&units=${units}`
     console.log('search')
     console.log('url: ', url)
 
