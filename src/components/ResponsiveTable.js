@@ -24,14 +24,17 @@ class ResponsiveTable extends React.Component {
     console.log('componentDidMount');
     console.log('url: ', url)
 
-    axios.get(url)
-    .then(res => {
-      this.setState({list: res.data.list})
-    })
-    .catch(function (error) {
-      console.log(error)
-    });
+    this.search(url);
   }
+
+  search = (url) => 
+    axios.get(url)
+      .then(res => {
+        this.setState({list: res.data.list})
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
 
   inputChange = (event) => {
     console.log('entered: ', event.target.value)
