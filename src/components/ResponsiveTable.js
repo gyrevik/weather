@@ -32,7 +32,7 @@ class ResponsiveTable extends React.Component {
   }
 
   search = () => {
-
+    console.log('find something or someone')
   }
 
   slice(list, index) {
