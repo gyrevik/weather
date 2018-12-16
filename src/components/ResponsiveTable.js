@@ -61,6 +61,8 @@ class ResponsiveTable extends React.Component {
     if (arr.length > 1)
       country = arr[1]
 
+    this.setState({city, country})
+
     // todo: update state (city, country)
     //console.log('city: ', city, ', country: ', country)
     //this.setState({ city, country }, this.search());
@@ -104,8 +106,12 @@ class ResponsiveTable extends React.Component {
   render () {
     const { list, city, country, windUnit } = this.state;
     const indexes = [4, 12, 20, 28, 36]
-    const location = `${city}, ${country}`
-    //console.log('list in render: ', list)
+    let location = city
+    
+    if (country.length > 0)
+      location += ', ' + country
+    console.log('location: ', location)
+    console.log('list in render: ', list)
     console.log('render')
 
     return (
@@ -114,7 +120,7 @@ class ResponsiveTable extends React.Component {
           <input type='text' id='location' onChange={this.inputChange} defaultValue={`${city}, ${country}`} />&nbsp;
           <input type='submit' value='UPDATE' onClick={this.searchBtn} />
         </caption>
-        <caption>{city}{country.length > 0 && `, ${country}`} 5 Day Forecast</caption>
+        <caption>{location} 5 Day Forecast</caption>
         <thead>
           <tr>
             <th scope="col">DAY</th>
