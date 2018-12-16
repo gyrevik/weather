@@ -19,13 +19,20 @@ class ResponsiveTable extends React.Component {
   }
 
   componentDidMount() {
-    this.search();
+    console.log('componentDidMount')
+    let city = '', country = ''
+    this.search(city, country);
   }
 
-  search = () => {
+  search = (cityParam, countryParam) => {
     const { apiID, apiBase, city, country, type, units } = this.state
-    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`
-    console.log('componentDidMount')
+
+    if (cityParam === '') {
+      cityParam = city
+      countryParam = country
+    }
+    const url = `${apiBase}?q=${cityParam},${countryParam}&type=${type}&appid=${apiID}&units=${units}`
+    console.log('search')
     console.log('url: ', url)
 
     axios.get(url)
@@ -44,16 +51,24 @@ class ResponsiveTable extends React.Component {
   
   searchBtn = () => {
     const { location } = this.state
+    let city = '', country = ''
+
     console.log('search location: ', location)
-    if (location.lenth === 0) return
+    if (location.length === 0) return
 
     const arr = location.split(',')
-    if (arr.length === 1)
-      this.setState({country: ''})
+    //if (arr.length === 1)
+    //  this.setState({country: ''})
 
-    this.setState({city: arr[0]})
+    city = arr[0]
     if (arr.length > 1)
-      this.setState({country: arr[1]})
+      country = arr[1]
+
+    // todo: update state (city, country)
+    //console.log('city: ', city, ', country: ', country)
+    //this.setState({ city, country }, this.search());
+
+    this.search(city, country);
   }
 
   slice(list, index) {
@@ -102,7 +117,7 @@ class ResponsiveTable extends React.Component {
           <input type='text' id='location' onChange={this.inputChange} defaultValue={`${city}, ${country}`} />&nbsp;
           <input type='submit' value='UPDATE' onClick={this.searchBtn} />
         </caption>
-        <caption>{location} 5 Day Forecast</caption>
+        <caption>{city}{country.length > 0 && `, ${country}`} 5 Day Forecast</caption>
         <thead>
           <tr>
             <th scope="col">DAY</th>
