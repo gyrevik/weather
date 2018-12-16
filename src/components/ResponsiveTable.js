@@ -73,6 +73,7 @@ class ResponsiveTable extends React.Component {
 
     return (
       <table>
+        <caption><input type='text' /></caption>
         <caption>{location} 5 Day Forecast</caption>
         <thead>
           <tr>

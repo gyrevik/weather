@@ -15,6 +15,7 @@ table {
 table caption {
   font-size: 1.5em;
   margin: .5em 0 .75em;
+  text-align: left;
 }
 
 table tr {
@@ -26,13 +27,14 @@ table tr {
 table th,
 table td {
   padding: .625em;
-  text-align: center;
+  text-align: left;
 }
 
 table th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
+  
 }
 
 @media screen and (max-width: 600px) {
