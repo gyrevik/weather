@@ -64,14 +64,21 @@ class ResponsiveTable extends React.Component {
     return this.min(this.slice(list, index)) + ' / ' + this.max(this.slice(list, index))
   }
 
-  getDate(dt, dt_txt) {
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    console.log('dt: ', dt)
-    console.log('dt_txt', dt_txt)
+  getDate(dt_txt) {
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'MONTH']
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+    //console.log('dt: ', dt)
+    //console.log('dt_txt', dt_txt)
     const d = new Date(dt_txt)
-    console.log('getDate: ', d.getDate())  
-    console.log('getDay: ', d.getDay())
-    console.log('day: ', days[d.getDay()])
+    //console.log('getDate: ', d.getDate())  
+    //console.log('getDay: ', d.getDay())
+    //console.log('day: ', days[d.getDay()])
+    //console.log('month: ', months[d.getMonth()])
+
+    //console.log(`${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDay()}`)
+
+    return `${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDay()}`
   }
 
   render () {
@@ -97,7 +104,7 @@ class ResponsiveTable extends React.Component {
         <tbody>
           {list && indexes.map((val, index) => 
             <tr key={index}>
-              <td data-label="DAY">{list[indexes[index]] && this.getDate(list[indexes[index]].dt, list[indexes[index]].dt_txt)}</td>
+              <td data-label="DAY">{list[indexes[index]] && this.getDate(list[indexes[index]].dt_txt)}</td>
               <td data-label="DESCRIPTION">{list[indexes[index]] && list[indexes[index]].weather[0].description}</td>
               <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
