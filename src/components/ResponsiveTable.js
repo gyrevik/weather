@@ -33,6 +33,27 @@ class ResponsiveTable extends React.Component {
     });
   }
 
+  slice(list, index) {
+    console.log('list.length: ', list.length)
+    if (list.length === 0) return
+
+    const beginSlice  = [0,  8, 16, 24, 32]
+    const endSlice    = [8, 16, 24, 32, 40]
+
+    console.log('list in slice: ', list)
+    console.log('logging slice for index', index)
+    console.log('slice: ', list.slice(beginSlice[index], endSlice[index]))
+
+    return list.slice(beginSlice[index], endSlice[index])
+  } 
+
+  min(arr) {
+    console.log('typeof arr: ', typeof arr)
+    if (typeof arr === 'undefined') return undefined
+    
+    console.log('arr.length: ', arr.length)
+    return arr.reduce((min, p) => p && p.main.temp_min < min ? p.main.temp_min : min, arr[0].main.temp_min)
+  }
 
   render () {
     const { list } = this.state;
@@ -55,13 +76,13 @@ class ResponsiveTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {list && indexes.map((row, key) => 
-            <tr key={key}>
+          {list && indexes.map((row, index) => 
+            <tr key={index}>
               <td data-label="DAY">test</td>
               <td data-label="DESCRIPTION">test</td>
-              <td data-label="HIGH / LOW">{list[indexes[key]] && list[indexes[key]].main.temp_min + ' / ' + list[indexes[key]].main.temp_max}</td>
-              <td data-label="PRESSURE">{list[indexes[key]] && list[indexes[key]].main.pressure}</td>
-              <td data-label="WIND">test</td>
+              <td data-label="HIGH / LOW">{list[indexes[index]] && list[indexes[index]].main.temp_min + ' / ' + list[indexes[index]].main.temp_max}</td>
+              <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
+              <td data-label="WIND">{this.min(this.slice(list, index))}</td>
               <td data-label="HUMIDITY">test</td>
             </tr>
           )}
