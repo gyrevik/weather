@@ -11,19 +11,20 @@ class ResponsiveTable extends React.Component {
                   city: 'München',
                   country: 'DE',
                   type: 'like',
+                  units: 'imperial',
                   list: []
     }
   }
 
   componentDidMount() {
-    const { apiID, apiBase, city, country, type } = this.state;
-    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}`;
-    console.log('url: ', url)
+    const { apiID, apiBase, city, country, type, units } = this.state;
+    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`;
+    //console.log('url: ', url)
 
     axios.get(url)
     .then(res => {
-      console.log('res: ', res);
-      console.log('res.data.list: ', res.data.list)
+      //console.log('res: ', res);
+      //console.log('res.data.list: ', res.data.list)
       this.setState({list: res.data.list})
       //const posts = res.data.data.children.map(obj => obj.data);
       //this.setState({ posts });
@@ -40,26 +41,22 @@ class ResponsiveTable extends React.Component {
     const beginSlice  = [0,  8, 16, 24, 32]
     const endSlice    = [8, 16, 24, 32, 40]
 
-    console.log('list in slice: ', list)
-    console.log('logging slice for index', index)
-    console.log('slice: ', list.slice(beginSlice[index], endSlice[index]))
+    //console.log('list in slice: ', list)
+    //console.log('logging slice for index', index)
+    //console.log('slice: ', list.slice(beginSlice[index], endSlice[index]))
 
     return list.slice(beginSlice[index], endSlice[index])
   } 
 
   min(arr) {
-    console.log('typeof arr: ', typeof arr)
     if (typeof arr === 'undefined') return undefined
 
-    console.log('arr.length: ', arr.length)
     return arr.reduce((min, p) => p && p.main.temp_min < min ? p.main.temp_min : min, arr[0].main.temp_min)
   }
 
   max(arr) {
-    console.log('typeof arr: ', typeof arr)
     if (typeof arr === 'undefined') return undefined
     
-    console.log('arr.length: ', arr.length)
     return arr.reduce((max, p) => p && p.main.temp_max > max ? p.main.temp_max : max, arr[0].main.temp_max)
   }
 
@@ -67,11 +64,19 @@ class ResponsiveTable extends React.Component {
     return `${this.min(this.slice(list, index))}/${this.max(this.slice(list, index))}`
   }
 
+  getDate(dt, dt_txt) {
+    console.log('dt: ', dt)
+    console.log('dt_txt', dt_txt)
+    const d = new Date(dt)
+    console.log('getDate: ', d.getDate())  
+    console.log('getDay: ', d.getDay())
+  }
+
   render () {
     const { list } = this.state;
     const indexes = [4, 12, 20, 28, 36]
-    const beginSlice = [0, 8, 16, 24, 32]
-    const endSlice = [8, 16, 24, 32, 40]
+    //const beginSlice = [0, 8, 16, 24, 32]
+    //const endSlice = [8, 16, 24, 32, 40]
     console.log('list in render: ', list)
 
     return (
@@ -90,12 +95,12 @@ class ResponsiveTable extends React.Component {
         <tbody>
           {list && indexes.map((val, index) => 
             <tr key={index}>
-              <td data-label="DAY">{list[indexes[index]] && list[indexes[index]].dt_txt}</td>
+              <td data-label="DAY">{list[indexes[index]] && this.getDate(list[indexes[index]].dt, list[indexes[index]].dt_txt)}</td>
               <td data-label="DESCRIPTION">{list[indexes[index]] && list[indexes[index]].weather[0].description}</td>
               <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
               <td data-label="WIND">{list[indexes[index]] && list[indexes[index]].wind.deg + ' ' + list[indexes[index]].wind.speed}</td>
-              <td data-label="HUMIDITY">{list[indexes[index]] && list[indexes[index]].main.humidity}</td>
+              <td data-label="HUMIDITY">{list[indexes[index]] && list[indexes[index]].main.humidity}%</td>
             </tr>
           )}
         </tbody>
