@@ -8,8 +8,8 @@ class ResponsiveTable extends React.Component {
     //api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
     this.state = {apiID: '814e19f3074443de6b0f91f176dc1026',
                   apiBase: 'http://api.openweathermap.org/data/2.5/forecast',
-                  city: 'München',
-                  country: 'DE',
+                  city: 'New York',
+                  country: 'US',
                   type: 'like',
                   units: 'imperial',
                   list: []
@@ -17,17 +17,12 @@ class ResponsiveTable extends React.Component {
   }
 
   componentDidMount() {
-    const { apiID, apiBase, city, country, type, units } = this.state;
-    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`;
-    //console.log('url: ', url)
+    const { apiID, apiBase, city, country, type, units } = this.state
+    const url = `${apiBase}?q=${city},${country}&type=${type}&appid=${apiID}&units=${units}`
 
     axios.get(url)
     .then(res => {
-      //console.log('res: ', res);
-      //console.log('res.data.list: ', res.data.list)
       this.setState({list: res.data.list})
-      //const posts = res.data.data.children.map(obj => obj.data);
-      //this.setState({ posts });
     })
     .catch(function (error) {
       console.log(error);
@@ -40,10 +35,6 @@ class ResponsiveTable extends React.Component {
 
     const beginSlice  = [0,  8, 16, 24, 32]
     const endSlice    = [8, 16, 24, 32, 40]
-
-    //console.log('list in slice: ', list)
-    //console.log('logging slice for index', index)
-    //console.log('slice: ', list.slice(beginSlice[index], endSlice[index]))
 
     return list.slice(beginSlice[index], endSlice[index])
   } 
@@ -67,30 +58,20 @@ class ResponsiveTable extends React.Component {
   getDate(dt_txt) {
     const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'MONTH']
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
-
-    //console.log('dt: ', dt)
-    //console.log('dt_txt', dt_txt)
     const d = new Date(dt_txt)
-    //console.log('getDate: ', d.getDate())  
-    console.log('getDay: ', d.getDay())
-    //console.log('day: ', days[d.getDay()])
-    //console.log('month: ', months[d.getMonth()])
-
-    //console.log(`${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDay()}`)
 
     return `${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()}`
   }
 
   render () {
-    const { list } = this.state;
+    const { list, city, country } = this.state;
     const indexes = [4, 12, 20, 28, 36]
-    //const beginSlice = [0, 8, 16, 24, 32]
-    //const endSlice = [8, 16, 24, 32, 40]
+    const location = `${city}, ${country}`
     console.log('list in render: ', list)
 
     return (
       <table>
-        <caption>Edgewater, NJ 5 Day Weather</caption>
+        <caption>{location} 5 Day Forecast</caption>
         <thead>
           <tr>
             <th scope="col">DAY</th>
