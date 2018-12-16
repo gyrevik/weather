@@ -78,7 +78,7 @@ class ResponsiveTable extends React.Component {
     return (
       <table>
         <caption>
-          <input type='text' id='location' />&nbsp;
+          <input type='text' id='location' defaultValue={`${city}, ${country}`} />&nbsp;
           <input type='button' value='UPDATE' onClick={this.search} />
         </caption>
         <caption>{location} 5 Day Forecast</caption>
