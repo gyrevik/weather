@@ -63,6 +63,10 @@ class ResponsiveTable extends React.Component {
     return arr.reduce((max, p) => p && p.main.temp_max > max ? p.main.temp_max : max, arr[0].main.temp_max)
   }
 
+  highLow(list, index) {
+    return `${this.min(this.slice(list, index))}/${this.max(this.slice(list, index))}`
+  }
+
   render () {
     const { list } = this.state;
     const indexes = [4, 12, 20, 28, 36]
@@ -88,9 +92,9 @@ class ResponsiveTable extends React.Component {
             <tr key={index}>
               <td data-label="DAY">test</td>
               <td data-label="DESCRIPTION">test</td>
-              <td data-label="HIGH / LOW">{list[indexes[index]] && list[indexes[index]].main.temp_min + ' / ' + list[indexes[index]].main.temp_max}</td>
+              <td data-label="HIGH / LOW">{this.min(this.slice(list, index))} / {this.max(this.slice(list, index))}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
-              <td data-label="WIND">{this.min(this.slice(list, index))} / {this.max(this.slice(list, index))}</td>
+              <td data-label="WIND"></td>
               <td data-label="HUMIDITY">test</td>
             </tr>
           )}
