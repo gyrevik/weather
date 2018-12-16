@@ -13,13 +13,13 @@ table {
 }
 
 table caption {
-  font-size: 1.5em;
+  font-size: 1em;
   margin: .5em 0 .75em;
   text-align: left;
 }
 
 table caption input {
-  font-size: 1.5em;
+  font-size: 1em;
   margin: .5em 0 .25em;
   text-align: left;
 }
