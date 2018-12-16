@@ -12,6 +12,7 @@ class ResponsiveTable extends React.Component {
                   country: 'US',
                   type: 'like',
                   units: 'imperial',
+                  windUnit: 'mph',
                   list: []
     }
   }
@@ -64,7 +65,7 @@ class ResponsiveTable extends React.Component {
   }
 
   render () {
-    const { list, city, country } = this.state;
+    const { list, city, country, windUnit } = this.state;
     const indexes = [4, 12, 20, 28, 36]
     const location = `${city}, ${country}`
     console.log('list in render: ', list)
@@ -89,7 +90,7 @@ class ResponsiveTable extends React.Component {
               <td data-label="DESCRIPTION">{list[indexes[index]] && list[indexes[index]].weather[0].description}</td>
               <td data-label="HIGH / LOW">{this.highLow(list, index)}</td>
               <td data-label="PRESSURE">{list[indexes[index]] && list[indexes[index]].main.pressure}</td>
-              <td data-label="WIND">{list[indexes[index]] && list[indexes[index]].wind.deg + ' ' + list[indexes[index]].wind.speed}</td>
+              <td data-label="WIND">{list[indexes[index]] && list[indexes[index]].wind.deg + ' ' + list[indexes[index]].wind.speed + ' ' + windUnit}</td>
               <td data-label="HUMIDITY">{list[indexes[index]] && list[indexes[index]].main.humidity}%</td>
             </tr>
           )}
