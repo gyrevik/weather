@@ -27,8 +27,11 @@ class ResponsiveTable extends React.Component {
       countryParam = country
     }
     
-    //const url = `${apiBase}?q=${cityParam},${countryParam}&type=${type}&appid=${apiID}&units=${units}`
-    const url = `${apiBase}?q=${cityParam}&type=${type}&appid=${apiID}&units=${units}`
+    let url = `${apiBase}?q=${cityParam}`
+    if (countryParam.length > 0) url += `,${countryParam}`
+
+    url += `&type=${type}&appid=${apiID}&units=${units}`
+    //const url = `${apiBase}?q=${cityParam}&type=${type}&appid=${apiID}&units=${units}`
     console.log('search')
     console.log('url: ', url)
 
@@ -54,18 +57,12 @@ class ResponsiveTable extends React.Component {
     if (location.length === 0) return
 
     const arr = location.split(',')
-    //if (arr.length === 1)
-    //  this.setState({country: ''})
 
     city = arr[0]
     if (arr.length > 1)
       country = arr[1]
 
     this.setState({city, country})
-
-    // todo: update state (city, country)
-    //console.log('city: ', city, ', country: ', country)
-    //this.setState({ city, country }, this.search());
 
     this.search(city, country);
   }
