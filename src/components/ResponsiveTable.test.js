@@ -9,12 +9,21 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it('renders without crashing', () => {
+it('shallow renders without crashing', () => {
   shallow(<ResponsiveTable />);
 });
 
-it('shallow render without crashing', () => {
+it('render header as expected', () => {
   const wrapper = shallow(<ResponsiveTable />);
-  const header = <caption>New York, US 5 Day Forecast</caption>;
-  expect(wrapper.contains(header)).toEqual(true);
+  const thead =         <thead>
+                          <tr>
+                            <th scope="col">DAY</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col">HIGH / LOW</th>
+                            <th scope="col">PRESSURE</th>
+                            <th scope="col">WIND</th>
+                            <th scope="col">HUMIDITY</th>
+                          </tr>
+                        </thead>;
+  expect(wrapper.contains(thead)).toEqual(true);
 });
