@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import shallow from 'enzyme'
+import { shallow } from 'enzyme'
 
 /*it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -11,5 +11,5 @@ import shallow from 'enzyme'
 });*/
 
 it('renders without crashing', () => {
-  shallow(<App />, div);
+  shallow(<App />);
 });
