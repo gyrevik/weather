@@ -109,9 +109,6 @@ class ResponsiveTable extends React.Component {
     
     if (country.length > 0)
       location += ', ' + country
-    console.log('location: ', location)
-    console.log('list in render: ', list)
-    console.log('render')
 
     if (list.length === 0)
       noResults = 'no results for ' + location
@@ -122,7 +119,7 @@ class ResponsiveTable extends React.Component {
           <input type='text' id='location' onChange={this.inputChange} defaultValue={`${city}, ${country}`} />&nbsp;
           <input type='submit' value='UPDATE' onClick={this.searchBtn} />
         </caption>
-        <caption>{location} 5 Day Forecast</caption>
+        <caption className="titleCaption">{location} 5 Day Forecast</caption>
         <thead>
           <tr>
             <th scope="col">DAY</th>
