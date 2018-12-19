@@ -14,11 +14,8 @@ In another command window inside the weather directory the tests can be run:
 
 ## Things to do and think about
 
-More test coverage
-Nicer styling
-Find an appropriate styling library like Bootstrap or Material UI. I did not
-user either of those here because I don't like the way they handle tables. They
-don't appear to have one that collapses into a card view.
+More test coverage. Nicer styling. Find an appropriate styling library like Bootstrap or Material UI. I did not use either of those here because I don't like the way they handle tables. They don't appear to have one that collapses into a card view. Creating such a table using Bootstrap or Material UI is
+something to consider.
 
 *********************************************************************
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
