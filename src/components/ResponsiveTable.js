@@ -14,7 +14,6 @@ class ResponsiveTable extends React.Component {
   }
   
   componentDidMount() {
-    console.log('componentDidMount')
     let city = '', country = ''
     this.search(city, country);
   }
@@ -31,9 +30,6 @@ class ResponsiveTable extends React.Component {
     if (countryParam.length > 0) 
       url += `,${countryParam}`
     url += `&type=${type}&appid=${apiID}&units=${units}`
-  
-    console.log('search')
-    console.log('url: ', url)
 
     this.setState({list: []})
     axios.get(url)
@@ -47,7 +43,6 @@ class ResponsiveTable extends React.Component {
   }
 
   inputChange = (event) => {
-    console.log('entered: ', event.target.value)
     this.setState({location: event.target.value})
   }
   
@@ -55,7 +50,6 @@ class ResponsiveTable extends React.Component {
     const { location } = this.state
     let city = '', country = ''
 
-    console.log('search location: ', location)
     if (location.length === 0) return
 
     const arr = location.split(',')
