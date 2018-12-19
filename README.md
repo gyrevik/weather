@@ -8,8 +8,9 @@ Execute the below commands to downlaod, build and run the app:
 ### `npm start`
 
 In another command window inside the weather directory the tests can be run:
-npm test
-a
+
+### `npm test`
+### `a`
 
 
 *********************************************************************
