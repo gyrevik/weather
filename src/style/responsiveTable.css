@@ -32,7 +32,7 @@ table tr {
 
 table th,
 table td {
-  padding: .625em;
+  padding: .625em 625em 625em 625em;
   text-align: left;
 }
 
