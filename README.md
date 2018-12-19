@@ -14,6 +14,8 @@ In another command window inside the weather directory the tests can be run:
 
 ## Things to do and think about
 
+Only supporting fuzzy search by city with optional country. That should be
+expanded with additional API calls.
 More test coverage. Nicer styling. Find an appropriate styling library like Bootstrap or Material UI. I did not use either of those here because I don't like the way they handle tables. They don't appear to have one that collapses into a card view. Creating such a table using Bootstrap or Material UI is
 something to consider.
 
