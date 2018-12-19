@@ -95,7 +95,7 @@ class ResponsiveTable extends React.Component {
   }
 
   getDate(dt_txt) {
-    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'MONTH']
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
     const d = new Date(dt_txt)
 
